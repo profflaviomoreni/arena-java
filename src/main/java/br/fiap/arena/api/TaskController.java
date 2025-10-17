@@ -17,7 +17,7 @@ public class TaskController {
     public TaskController(TaskService service) { this.service = service; }
 
     @GetMapping("/create")
-    public ResponseEntity<?> createViaGet(@RequestParam String title,
+    public ResponseEntity<?> createViaGet(@RequestParam("title") String title,
                                           @RequestParam(required = false) Integer priority,
                                           @RequestParam(required = false) TaskStatus status) {
         Task t = new Task();
@@ -45,7 +45,7 @@ public class TaskController {
     }
 
     @GetMapping("/delete/{id}")
-    public ResponseEntity<?> deleteViaGet(@PathVariable Long id) {
+    public ResponseEntity<?> deleteViaGet(@PathVariable("id") Long id) {
         boolean removed = service.delete(id);
         return ResponseEntity.ok(removed);
     }
